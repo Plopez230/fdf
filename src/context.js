@@ -1,4 +1,4 @@
-import { Transform, Scale, RotationX, RotationY, RotationZ } from "./transform.js";
+import { Transform, Scale, RotationX, RotationY, RotationZ, Zoom, Translation } from "./transform.js";
 
 export class DrawingContext
 {
@@ -13,9 +13,11 @@ export class DrawingContext
         ];
         this.transforms = [
             new Scale(50, 50, 50),
-            new RotationZ(0, 0.1),
+            new RotationZ(0, 0.3),
             new RotationY(0, 0),
-            new RotationX(5 * 3.1415 / 3, 0),
+            new RotationX(5, 0),
+            new Zoom(0.5, 0),
+            new Translation(0, 0, 0)
         ]
         this.transform = new Transform(
             this.transforms

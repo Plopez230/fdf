@@ -36,7 +36,7 @@ export class Map
     {
         return [
             (point[0] - (this.width - 1) / 2),
-            (point[1] - (this.height - 1) / 2),
+            -(point[1] - (this.height - 1) / 2),
             point[2]
         ];
     }

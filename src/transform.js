@@ -137,6 +137,79 @@ export class Scale extends Transform
 
 }
 
+export class Translation extends Transform
+{
+
+    constructor(x, y, z, animation_speed)
+    {
+        super(null, animation_speed);
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.transformForm = new TransformForm(
+            "Translation",
+            this,
+            ["x", "y", "z"]
+        );
+        this.reload();
+    }
+
+    get_display_value(attribute)
+    {
+        return (this[attribute]) / 100 + 50;
+    }
+
+    set_display_value(attribute, value)
+    {
+        this[attribute] = (value - 50) * 100;
+    }
+
+    reload()
+    {
+        this.identity();
+        this.transform[3][0] = this.x;
+        this.transform[3][1] = this.y;
+        this.transform[3][2] = this.z;
+    }
+
+}
+
+export class Zoom extends Transform
+{
+
+    constructor(scale, animation_speed)
+    {
+        super(null, animation_speed);
+        this.scale = scale;
+        this.transformForm = new TransformForm(
+            "Zoom",
+            this,
+            ["scale"]
+        );
+        this.reload();
+    }
+
+    get_display_value(attribute)
+    {
+        return (this[attribute]) * 100 - 1;
+    }
+
+    set_display_value(attribute, value)
+    {
+        this[attribute] = (value + 1) / 100;
+    }
+
+    reload()
+    {
+        this.identity();
+        this.transform[0][0] = this.scale;
+        this.transform[1][1] = this.scale;
+        this.transform[2][2] = this.scale;
+    }
+
+}
+
+
 export class RotationX extends Transform
 {
 

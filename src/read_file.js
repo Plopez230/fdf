@@ -27,10 +27,12 @@ export class FileRead
     load_map(contents)
     {
         this.map.map = [];
+        this.map.width = 0;
+        this.map.height = 0;
         var rows = contents.split("\n");
         for (let i = 0; i < rows.length; i++)
         {
-            var str_values = rows[i].split(" ");
+            var str_values = rows[i].split(/[\s,]+/);
             var values = [];
             for (let x = 0; x < str_values.length; x++)
             {

@@ -34,25 +34,25 @@ export class Canvas
         ];
     }
 
-    draw_line(context, line, line_color)
+    draw_line(context, line)
     {
         var start = this.center_point(
             context.transform.apply_to_point(line[0]));
         var end = this.center_point(
             context.transform.apply_to_point(line[1]));
-        this.ctx.beginPath();
-        this.ctx.strokeStyle = line_color;
         this.ctx.moveTo(start[0], start[1]);
         this.ctx.lineTo(end[0], end[1]);
-        this.ctx.stroke();
     }
     
     draw_lines(context)
     {
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = context.line_color;
         for (let i = 0; i < context.lines.length; i++)
         {
-            this.draw_line(context, context.lines[i], context.line_color);
+            this.draw_line(context, context.lines[i]);
         }
+        this.ctx.stroke();
     }
 
     draw(context)
