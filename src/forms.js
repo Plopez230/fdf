@@ -26,7 +26,7 @@ export class TransformForm
                     ${this.name}
                 </button>
                 </h2>
-                <div id="collapse-${this.id}" class="accordion-collapse collapse" data-bs-parent="#transformations">
+                <div id="collapse-${this.id}" class="accordion-collapse collapse" data-bs-parent="">
                     <div class="accordion-body">
         `;
         for (let i = 0; i < this.attributes.length; i++)
