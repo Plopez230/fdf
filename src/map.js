@@ -2,8 +2,9 @@
 export class Map
 {
 
-    constructor()
+    constructor(context)
     {
+        this.context = context;
         this.map = [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0],
@@ -28,6 +29,7 @@ export class Map
         ];
         this.width = 20;
         this.height = 20;
+        this.context.lines = this.get_lines();
     }
 
     center_point(point)
