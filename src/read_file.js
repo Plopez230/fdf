@@ -53,17 +53,20 @@ export class FileRead
 
     load_map(contents)
     {
+        delete this.map.map;
         this.map.map = [];
         this.map.width = 0;
         this.map.height = 0;
         var rows = contents.split("\n");
         for (let i = 0; i < rows.length; i++)
         {
-            var str_values = rows[i].split(/[\s,]+/);
+            var str_values = rows[i].split(" ");
             var values = [];
             for (let x = 0; x < str_values.length; x++)
             {
-                values.push(parseInt(str_values[x]));
+                var value = parseInt(str_values[x]);
+                if (!isNaN(value))
+                    values.push(value);
             }
             this.map.height = Math.max(this.map.height, values.length);
             this.map.map.push(values);
