@@ -8,6 +8,33 @@ export class FileRead
         this.map = map;
         this.input = document.getElementById("input-file");
         this.input.addEventListener("change", this.read_file.bind(this));
+        document.querySelectorAll('a[example]').forEach(link => {
+            link.addEventListener('click', this.read_example.bind(this));
+            link.innerHTML = link.getAttribute("example");
+        });
+    }
+
+    read_example(e)
+    {
+        e.preventDefault();
+        var name = e.target.getAttribute("example");
+        fetch('./examples/'+name)
+        .then(
+            function(response) {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+                return;
+            }
+            response.text().then(function(data) {
+                //console.log(data);
+                this.load_map(data);
+            }.bind(this));
+            }.bind(this)
+        )
+        .catch(function(err) {
+            console.log('Fetch Error :-S', err);
+        });
     }
 
     read_file(e)
